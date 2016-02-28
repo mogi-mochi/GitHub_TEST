@@ -199,7 +199,7 @@ phina.define('MainScene', {
       charaNo[1] 
     ).addChildTo(this);
     
-    CMN.charaAry[charaNo[2]] = RoppeChara(
+    CMN.charaAry[charaNo[2]] = ZonChara(
       CMN.func.randInt(
         PRM.CHARA_STATUS.size / 2, 
         CFG.SCREEN_WIDTH - PRM.CHARA_STATUS.size / 2
