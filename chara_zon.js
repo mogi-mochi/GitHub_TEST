@@ -1,7 +1,7 @@
-//roppe個人用PG
+
 //main.jsを利用
 
-//roppe'sキャラ
+//zon'sキャラ
 phina.define('ZonChara', {
   superClass : 'CharaBase',
   init : function(x, y, no){
