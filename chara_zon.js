@@ -20,6 +20,8 @@ phina.define('ZonChara', {
     if(id != -1 && this.hp > 20){
       //this.moveAwayFromTarget(id);
       this.moveCertainDistanceOfTarget(id, 350);
+    }else{
+      this.moveRandom();
     }
 
   },
@@ -37,7 +39,7 @@ phina.define('ZonChara', {
     var targetId = -1;
     var minLen = Infinity;
     for(var index = 0; index < CMN.charaAry.length; index++){
-      var len = Math.pow(( CMN.charaAry[0].x - this.x), 2) + Math.pow(( CMN.charaAry[0].y - this.y), 2);  //平方根は省略
+      var len = Math.pow(( CMN.charaAry[index].x - this.x), 2) + Math.pow(( CMN.charaAry[index].y - this.y), 2);  //平方根は省略
       //console.log("target["+ index + "]:(" + CMN.charaAry[0].x + ", " +  CMN.charaAry[0].y + ")");
       if(len != 0 && minLen > len){
         minLen = len;
@@ -80,8 +82,8 @@ phina.define('ZonChara', {
   //行動：targetから離れる
   moveAwayFromTarget : function(id){
     //var target = CMN.charaAry[id];
-    var rad = Math.atan2(CMN.charaAry[0].y - this.y, CMN.charaAry[0].x - this.x);
-    var len = Math.pow(Math.pow((CMN.charaAry[0].x - this.x), 2) + Math.pow((CMN.charaAry[0].y - this.y), 2), 0.5);
+    var rad = Math.atan2(CMN.charaAry[id].y - this.y, CMN.charaAry[id].x - this.x);
+    var len = Math.pow(Math.pow((CMN.charaAry[id].x - this.x), 2) + Math.pow((CMN.charaAry[id].y - this.y), 2), 0.5);
     
     var moveX = -Math.round(PRM.CHARA_STATUS.speed * Math.cos(rad));
     var moveY = -Math.round(PRM.CHARA_STATUS.speed * Math.sin(rad));
@@ -93,8 +95,8 @@ phina.define('ZonChara', {
   //行動：targetに近づく
   moveCloserToTarget : function(id){
     //var target = CMN.charaAry[id];
-    var rad = Math.atan2(CMN.charaAry[0].y - this.y, CMN.charaAry[0].x - this.x);
-    var len = Math.pow(Math.pow((CMN.charaAry[0].x - this.x), 2) + Math.pow((CMN.charaAry[0].y - this.y), 2), 0.5);
+    var rad = Math.atan2(CMN.charaAry[id].y - this.y, CMN.charaAry[id].x - this.x);
+    var len = Math.pow(Math.pow((CMN.charaAry[id].x - this.x), 2) + Math.pow((CMN.charaAry[id].y - this.y), 2), 0.5);
     
     var moveX = Math.round(PRM.CHARA_STATUS.speed * Math.cos(rad));
     var moveY = Math.round(PRM.CHARA_STATUS.speed * Math.sin(rad));
@@ -106,8 +108,8 @@ phina.define('ZonChara', {
   //行動: targetから一定距離を保つ
   moveCertainDistanceOfTarget : function(id, distance){
     //var target = CMN.charaAry[id];
-    var rad = Math.atan2(CMN.charaAry[0].y - this.y, CMN.charaAry[0].x - this.x);
-    var len = Math.pow(Math.pow((CMN.charaAry[0].x - this.x), 2) + Math.pow((CMN.charaAry[0].y - this.y), 2), 0.5);
+    var rad = Math.atan2(CMN.charaAry[id].y - this.y, CMN.charaAry[id].x - this.x);
+    var len = Math.pow(Math.pow((CMN.charaAry[id].x - this.x), 2) + Math.pow((CMN.charaAry[id].y - this.y), 2), 0.5);
     var moveX = 0;
     var moveY = 0;
     if(distance > len){
